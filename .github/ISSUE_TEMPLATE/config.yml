@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feature Request or Idea
+    url: https://github.com/mussonking/motsdits-app/discussions
+    about: Please post feature requests and ideas in Discussions.
+  - name: General Discussion
+    url: https://github.com/mussonking/motsdits-app/discussions
+    about: Ask questions and discuss MotsDits with the community.

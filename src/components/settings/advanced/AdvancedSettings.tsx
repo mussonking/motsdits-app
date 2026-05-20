@@ -1,0 +1,68 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { ShowOverlay } from "../ShowOverlay";
+import { ModelUnloadTimeoutSetting } from "../ModelUnloadTimeout";
+import { SettingsGroup } from "../../ui/SettingsGroup";
+import { StartHidden } from "../StartHidden";
+import { ShowTrayIcon } from "../ShowTrayIcon";
+import { PasteMethodSetting } from "../PasteMethod";
+import { TypingToolSetting } from "../TypingTool";
+import { ClipboardHandlingSetting } from "../ClipboardHandling";
+import { AutoSubmit } from "../AutoSubmit";
+import { PostProcessingToggle } from "../PostProcessingToggle";
+import { AppendTrailingSpace } from "../AppendTrailingSpace";
+import { HistoryLimit } from "../HistoryLimit";
+import { RecordingRetentionPeriodSelector } from "../RecordingRetentionPeriod";
+import { ExperimentalToggle } from "../ExperimentalToggle";
+import { PostProcessingAutoToggle } from "../PostProcessingAutoToggle";
+import { useSettings } from "../../../hooks/useSettings";
+import { KeyboardImplementationSelector } from "../debug/KeyboardImplementationSelector";
+import { AccelerationSelector } from "../AccelerationSelector";
+
+export const AdvancedSettings: React.FC = () => {
+  const { t } = useTranslation();
+  const { getSetting } = useSettings();
+  const experimentalEnabled = getSetting("experimental_enabled") || false;
+
+  return (
+    <div className="max-w-3xl w-full mx-auto space-y-6">
+      <SettingsGroup title={t("settings.advanced.groups.app")}>
+        <StartHidden descriptionMode="tooltip" grouped={true} />
+        <ShowTrayIcon descriptionMode="tooltip" grouped={true} />
+        <ShowOverlay descriptionMode="tooltip" grouped={true} />
+        <ModelUnloadTimeoutSetting descriptionMode="tooltip" grouped={true} />
+      </SettingsGroup>
+
+      <SettingsGroup title={t("settings.advanced.groups.output")}>
+        <PasteMethodSetting descriptionMode="tooltip" grouped={true} />
+        <TypingToolSetting descriptionMode="tooltip" grouped={true} />
+        <ClipboardHandlingSetting descriptionMode="tooltip" grouped={true} />
+        <AutoSubmit descriptionMode="tooltip" grouped={true} />
+        <AppendTrailingSpace descriptionMode="tooltip" grouped={true} />
+      </SettingsGroup>
+
+      <SettingsGroup title={t("settings.advanced.groups.history")}>
+        <HistoryLimit descriptionMode="tooltip" grouped={true} />
+        <RecordingRetentionPeriodSelector
+          descriptionMode="tooltip"
+          grouped={true}
+        />
+      </SettingsGroup>
+
+      <SettingsGroup title={t("settings.advanced.groups.experimental")}>
+        <ExperimentalToggle descriptionMode="tooltip" grouped={true} />
+        {experimentalEnabled && (
+          <>
+            <PostProcessingToggle descriptionMode="tooltip" grouped={true} />
+            <PostProcessingAutoToggle descriptionMode="tooltip" grouped={true} />
+            <KeyboardImplementationSelector
+              descriptionMode="tooltip"
+              grouped={true}
+            />
+            <AccelerationSelector descriptionMode="tooltip" grouped={true} />
+          </>
+        )}
+      </SettingsGroup>
+    </div>
+  );
+};

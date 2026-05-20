@@ -1,0 +1,121 @@
+.recording-overlay {
+  height: 36px;
+  width: 172px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 6px;
+  color: #24364A;
+  background: #0d1117f2;
+  border: 1px solid #00d2ff99;
+  border-radius: 8px;
+  box-shadow:
+    0 8px 24px #00000059,
+    0 0 0 1px #00ff8826,
+    0 0 18px #00d2ff29;
+  opacity: 0;
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out;
+  transform: translateY(2px);
+  box-sizing: border-box;
+}
+
+.overlay-left {
+  display: flex;
+  align-items: center;
+}
+
+.overlay-middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.bars-container {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 3px;
+  padding-bottom: 0px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.bar {
+  width: 6px;
+  background: linear-gradient(180deg, #00d2ff 0%, #00ff88 100%);
+  max-height: 20px;
+  border-radius: 2px;
+  transition: height 80ms linear;
+  min-height: 4px;
+  box-shadow: 0 0 8px #00ff8866;
+}
+
+.recording-overlay.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.transcribing-text {
+  color: #e6edf3;
+  font-size: 12px;
+  font-family:
+    "Cascadia Mono", "JetBrains Mono", "SFMono-Regular", Consolas,
+    "Liberation Mono", monospace;
+  animation: transcribing-pulse 1.5s infinite ease-in-out;
+}
+
+.transcribing-text.processing-error-text {
+  color: #ff5d6c;
+  font-weight: 600;
+  animation: none;
+}
+
+.recording-overlay.processing-error-border {
+  border-color: #ff5d6c99;
+  box-shadow:
+    0 8px 24px #00000059,
+    0 0 0 1px #ff5d6c26,
+    0 0 18px #ff5d6c40;
+}
+
+@keyframes transcribing-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.cancel-button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease-out,
+    transform 100ms ease-out;
+  flex-shrink: 0;
+}
+
+.cancel-button:hover {
+  background: #00d2ff26;
+  transform: scale(1.05);
+}
+
+.cancel-button:active {
+  transform: scale(0.95);
+}
